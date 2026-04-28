@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registro</title>
+  <!--por algum motivo não consegui baixar as dependencias-->
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <link rel="stylesheet" href="cadastro.css" />
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    function FormularioRegistro() {
+      const [formData, setFormData] = React.useState({
+        nome: '',
+        sobrenome: '',
+        email: '',
+        senha: '',
+        confirmarSenha: '',
+      });
+
+      const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData({ ...formData, [name]: value });
+      };
+
+      const handleSubmit = (e) => {
+        e.preventDefault();
+        if (formData.senha !== formData.confirmarSenha) {
+          alert('As senhas não coincidem!');
+          return;
+        }
+        console.log('Dados do usuário:', formData);
+        alert('Cadastro realizado com sucesso!');
+      };
+
+      return (
+        <form className="form" onSubmit={handleSubmit}>
+          <p className="title">Registro</p>
+          <p className="message">Cadastre-se agora e tenha acesso total ao nosso site.</p>
+          <div className="flex">
+            <label>
+              <input
+                className="input"
+                type="text"
+                name="nome"
+                value={formData.nome}
+                onChange={handleChange}
+                required
+              />
+              <span>Nome</span>
+            </label>
+            <label>
+              <input
+                className="input"
+                type="text"
+                name="sobrenome"
+                value={formData.sobrenome}
+                onChange={handleChange}
+                required
+              />
+              <span>Sobrenome</span>
+            </label>
+          </div>
+          <label>
+            <input
+              className="input"
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              required
+            />
+            <span>E-mail</span>
+          </label>
+          <label>
+            <input
+              className="input"
+              type="password"
+              name="senha"
+              value={formData.senha}
+              onChange={handleChange}
+              required
+            />
+            <span>Senha</span>
+          </label>
+          <label>
+            <input
+              className="input"
+              type="password"
+              name="confirmarSenha"
+              value={formData.confirmarSenha}
+              onChange={handleChange}
+              required
+            />
+            <span>Confirme sua senha</span>
+          </label>
+          <button className="submit">Enviar</button>
+          <p className="signin">Já tem conta? <a href="#">Entrar</a></p>
+        </form>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById('root')).render(<FormularioRegistro />);
+  </script>
+</body>
+</html>

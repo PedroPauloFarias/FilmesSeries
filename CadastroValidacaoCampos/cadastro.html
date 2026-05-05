@@ -7,7 +7,6 @@
   <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
   <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
   <script crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-  <!-- Seu CSS -->
   <link rel="stylesheet" href="cadastro.css" />
 </head>
 <body>
@@ -23,7 +22,7 @@
         confirmarSenha: '',
       });
 
-      // Novo estado para erros
+      //Novo estado para erros
       const [erros, setErros] = React.useState({
         nome: '',
         sobrenome: '',
@@ -41,7 +40,7 @@
         }
       };
 
-      // Função para validar os campos
+      //Função para validar os campos
       const validarCampos = () => {
         let valido = true;
         const novosErros = {
@@ -52,7 +51,7 @@
           confirmarSenha: '',
         };
 
-        // Validação de campos obrigatórios
+        //Validação de campos obrigatórios
         if (!formData.nome.trim()) {
           novosErros.nome = 'O campo nome é obrigatório.';
           valido = false;
@@ -63,7 +62,7 @@
           valido = false;
         }
 
-        // Validação de e-mail
+        //Validação de e-mail
         if (!formData.email.trim()) {
           novosErros.email = 'O campo e-mail é obrigatório.';
           valido = false;
@@ -72,7 +71,7 @@
           valido = false;
         }
 
-        // Validação de senha
+        //Validação de senha
         if (!formData.senha.trim()) {
           novosErros.senha = 'O campo senha é obrigatório.';
           valido = false;
@@ -81,7 +80,7 @@
           valido = false;
         }
 
-        // Validação de confirmação de senha
+        //Validação de confirmação de senha
         if (formData.senha !== formData.confirmarSenha) {
           novosErros.confirmarSenha = 'As senhas não coincidem.';
           valido = false;
